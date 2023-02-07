@@ -23,10 +23,11 @@ function checkAnswer(){
    correct.classList.add('hide');
    if(answerCorrect){
     correct.classList.remove('hide');
-    var container = document.querySelector('.image-container')
+    var container = document.querySelector('.fireworks')
     var fireworks = new Fireworks.default(container)
+    container.classList.add('displayfireworks');
     fireworks.start();
-    setTimeout(function(){ fireworks.stop() }, 4000)
+    setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks') }, 8000)
    } else {
     incorrect.classList.remove('hide');
    }
