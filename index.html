@@ -1,18 +1,35 @@
-<script src="./changeImage.js"></script>
-<link rel="stylesheet" href="player.css">
+<html lang="en">
+<head>
+    <title>Title of the document</title>
+    <script src="./changeImage.js"></script>
+    <link rel="stylesheet" href="player.css">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+</head>
+<body>
+
 
 <div class="canvas">
     <h1>Game 1</h1>
-    <img class="player-image" src="https://www.datocms-assets.com/48136/1636998129-playerreturnofliein-desktop.png?dpr=2&fit=crop&fm=webp&h=608&w=680">
-  
-    <img class="pixelart" src="https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU">
-  
-    <button class="left-btn" onclick="prev()"></button>
-    <button class="right-btn" onclick="next()"></button>
+    <div class="game-container">
+        <div>
+        <img class="player-image" src="https://www.datocms-assets.com/48136/1675793470-yoto-rebus-player.png">
+        <img class="pixelart" src="https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU">
+        </div>
+        
+
+        <button class="left-btn" onclick="prev()"></button>
+        <button class="right-btn" onclick="next()"></button>
+    </div>
     <div class="answer-area">
         <input type="text"/>
         <input type="text"/>
         <input type="text"/>
         <input type="text"/>
     </div>
-</div
+    <input type="text" class="final-answer"/>
+    <button type="submit" onclick="checkAnswer()">Submit Answer</button>
+    <p class="correct hide">answer correct</p>
+    <p class="incorrect hide">answer incorrect</p>
+</div>
+</body>
+</html>

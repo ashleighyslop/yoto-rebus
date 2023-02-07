@@ -12,6 +12,23 @@ function next() {
   document.querySelector(".pixelart").src = images[i];
 }
 
+
+var answer1 = 'night before christmas'
+function checkAnswer(){
+   var userAnswer = document.querySelector(".final-answer").value;
+   var answerCorrect = userAnswer.toLowerCase() === answer1;
+   var correct = document.querySelector(".correct");
+   var incorrect = document.querySelector(".incorrect")
+   incorrect.classList.add('hide');
+   correct.classList.add('hide');
+   if(answerCorrect){
+    correct.classList.remove('hide');
+   } else {
+    incorrect.classList.remove('hide');
+   }
+}
+
+
 var imgYoto =
   "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU";
 
