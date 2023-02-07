@@ -1,17 +1,35 @@
 var i = 0;
+var game;
+var steps;
+
+var YOTO_FACE_STEP = {
+  word: 'Night',
+  pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU"
+}
 
 // Crappy POC code
+function initGame(index) {
+  // Reset images array:
+  i = index || 0;
+  game = games[i];
+  steps = [YOTO_FACE_STEP].concat(game.steps);
+  prev();
 
-function prev() {
+  // Heading:
+  document.getElementById('heading').innerText = game.gameName;
+}
+
+function prev(e) {
   i = Math.max(i - 1, 0);
-  document.querySelector(".pixelart").src = images[i];
+  console.log(i);
+  document.querySelector(".pixelart").src = steps[i].pixelArtSrc;
 }
 
-function next() {
-  i = Math.min(i + 1, images.length - 1);
-  document.querySelector(".pixelart").src = images[i];
+function next(e) {
+  i = Math.min(i + 1, steps.length - 1);
+  console.log(i);
+  document.querySelector(".pixelart").src = steps[i].pixelArtSrc;
 }
-
 
 var answer1 = 'night before christmas'
 function checkAnswer(){
@@ -33,25 +51,39 @@ function checkAnswer(){
 }
 
 
-var imgYoto =
-  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU";
-
-var imgNight =
-  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/7buOLfEt-h1-axsTKzPvDAlLK6oi9U_4N0CUsmB0RYY";
-
-var imgBee =
-  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/Jc3p_I7ZHVjzDdkrakWZAvqPKPzJJah7ZiLzgcGKCsQ";
-
-var imgFour =
-  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/ceJFo6GR12is75P3dyESEnEq5Tqo_6MxpE96FDeMsq0";
-
-var imgSanta =
-  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/f8GZbRwTQPxfjTZ8b4yUUR7Tkqdb2xM7u0nXkpNUtEw";
 
 var imgQuestion =
   "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/UAQO5kbImNTPRcr2yywpPlR_MmzZtVsmhRUg6t5a_9s";
 
-var images = [imgYoto, imgNight, imgBee, imgFour, imgSanta, imgQuestion];
 
-// Init
-document.querySelector(".pixelart").src = images[0];
+
+
+// Move this to JSON file or Fetch from CMS
+var games = [
+  {
+      gameName: "Game 1",
+      productName: "The night before christmas",
+      productUrl: "https://uk.yotoplay.com/products/the-night-before-christmas-digital",
+      steps: [
+          {
+              word: 'Night',
+              pixelArtSrc:  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/7buOLfEt-h1-axsTKzPvDAlLK6oi9U_4N0CUsmB0RYY"
+          },
+          {
+              word: 'Bee',
+              pixelArtSrc:  "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/Jc3p_I7ZHVjzDdkrakWZAvqPKPzJJah7ZiLzgcGKCsQ"
+          },
+          {
+              word: 'Four',
+              pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/ceJFo6GR12is75P3dyESEnEq5Tqo_6MxpE96FDeMsq0"
+          },
+          {
+              word: 'Santa',
+              pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/f8GZbRwTQPxfjTZ8b4yUUR7Tkqdb2xM7u0nXkpNUtEw"
+          },
+      ]
+  }
+];
+
+
+document.addEventListener('readystatechange', function(){ initGame(0) });

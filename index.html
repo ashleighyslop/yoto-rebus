@@ -10,26 +10,27 @@
 
 
 <div class="canvas">
-    <h1>Game 1</h1>
+    <h1 id="heading">Game 1</h1>
     <div class="game-container">
         <div class="image-container">
         <img class="player-image" src="https://www.datocms-assets.com/48136/1675793470-yoto-rebus-player.png">
         </div>
         <img class="pixelart" src="https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU">
-        
-        
-
         <button class="left-btn" onclick="prev()"></button>
         <button class="right-btn" onclick="next()"></button>
     </div>
+
     <div class="answer-area">
         <input type="text"/>
         <input type="text"/>
         <input type="text"/>
         <input type="text"/>
     </div>
+
     <input type="text" class="final-answer"/>
+
     <button type="submit" onclick="checkAnswer()">Submit Answer</button>
+
     <p class="correct hide">answer correct</p>
     <p class="incorrect hide">answer incorrect</p>
 
