@@ -66,9 +66,10 @@ function App() {
      console.log('-')
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 3000)
-      setTimeout(function(){correct.classList.add('hide');   checkButton.classList.add('hide'); submitButton.classList.remove('hide')}, 3000)
+      setTimeout(function(){correct.classList.add('hide');  document.querySelector(".final-answer").value = ' ';}, 3000)
 
-
+      setGameIndex(gameIndex + 1);
+      setIndex(0);
     } else {
 
       incorrect.classList.remove('hide');
@@ -80,15 +81,15 @@ function App() {
       }, 1000)
  }}
 
- const userSubmit = () => {
-  setGameIndex(gameIndex + 1);
-  setIndex(0);
-  document.querySelector(".final-answer").value = ' ';
-  const submitButton = document.querySelector('.submit');
-  const checkButton = document.querySelector('.check');
-  submitButton.classList.add('hide');
-  checkButton.classList.remove('hide');
- }
+//  const userSubmit = () => {
+//   setGameIndex(gameIndex + 1);
+//   setIndex(0);
+//   document.querySelector(".final-answer").value = ' ';
+//   const submitButton = document.querySelector('.submit');
+//   const checkButton = document.querySelector('.check');
+//   submitButton.classList.add('hide');
+//   checkButton.classList.remove('hide');
+//  }
 
 
 
@@ -144,7 +145,7 @@ function App() {
 
       <div className="form">
 
-        <form name="rebus-answers" method="post" onSubmit={userSubmit}>
+        <form name="rebus-answers" method="post">
           <input type="hidden" name="form-name" value="rebus-answers" />
 
 
@@ -163,9 +164,7 @@ function App() {
             <p>
               <label>Your name: <input type="text" name="name" required="true" /></label>
             </p>
-            <p>
-            <button className="submit hide" type="submit" >Send</button>
-            </p>
+
             <button type="submit" className="check" onClick={checkAnswer}>Check Answer</button>
         </form>
       </div>
