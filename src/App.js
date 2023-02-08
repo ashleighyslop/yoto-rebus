@@ -1,9 +1,10 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import fetchGames from './cms';
 import { Fireworks } from 'fireworks-js';
 
 function App() {
-  const games = [
+  let games = [
     {
         gameName: "Game 1",
         productName: "The night before christmas",
@@ -28,6 +29,13 @@ function App() {
         ]
     }
   ];
+
+  fetchGames().then(json => {
+    console.log(json);
+    games = json.allGames;
+    setGame(games[index]);
+  })
+
   const answer1 = 'night before christmas'
   const checkAnswer = () => {
     var userAnswer = document.querySelector(".final-answer").value;
@@ -70,15 +78,13 @@ function App() {
   const [steps, setSteps] = useState([YOTO_FACE_STEP].concat(games[0].steps, [QUESTION_STEP]))
 
   useEffect = (() => {
-
+console.log('!!!!')
     setGame(games[index]);
     prev();
-
 
     document.getElementById('heading').innerText = game.gameName;
 
   }, [])
-
 
 
   const  prev = (e) =>{
