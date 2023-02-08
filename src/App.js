@@ -66,7 +66,7 @@ function App() {
      console.log('-')
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 3000)
-      setTimeout(function(){correct.classList.add('hide');  document.querySelector(".final-answer").value = ' ';}, 3000)
+      setTimeout(function(){correct.classList.add('hide');  document.querySelector(".final-answer").value = '';}, 3000)
 
       setGameIndex(gameIndex + 1);
       setIndex(0);
