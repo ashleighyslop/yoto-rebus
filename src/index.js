@@ -5,9 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
+
+    <script src="./changeImage.js"></script>
+    <link rel="stylesheet" href="player.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"/>
+    <script src="https://unpkg.com/fireworks-js@2.x/dist/index.umd.js"></script>
+
     <App />
+
   </React.StrictMode>
 );
 
