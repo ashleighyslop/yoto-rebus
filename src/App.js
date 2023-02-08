@@ -121,12 +121,6 @@ function App() {
       </div>
 
 
-
-
-
-
-
-
       <div class="form">
 
           <form name="rebus-answers" data-netlify="true" data-netlify-honeypot="bot-field">
@@ -136,7 +130,7 @@ function App() {
               <label>Name: <input type="text" name="name" required="true" /></label>
             </p>
           <div class="answer-area">
-          <h2 class='h2'>Scratch Pad</h2>
+            <h2 class='h2'>Scratch Pad</h2>
             <div class='answer-boxes'>
             {steps.slice(2).map(i =>
               (<input class='input-box' type="text"/>)
