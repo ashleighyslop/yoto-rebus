@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import fetchGames from './cms';
 import { Fireworks } from 'fireworks-js';
 
@@ -29,17 +29,28 @@ function App() {
         ]
     }
   ];
+  const YOTO_FACE_STEP = {
+    word: 'Yoto face',
+    pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU"
+  }
 
-  fetchGames().then(json => {
-    console.log(json);
-    games = json.allGames;
-    setGame(games[index]);
-  })
+  const QUESTION_STEP = {
+    word: 'Question Mark',
+    pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/UAQO5kbImNTPRcr2yywpPlR_MmzZtVsmhRUg6t5a_9s"
+  }
+
+
+
+  const [gameIndex, setGameIndex] = useState(0)
+  const [index, setIndex] = useState(0);
+  const [game, setGame] = useState(games[0])
+  const [steps, setSteps] = useState([YOTO_FACE_STEP].concat(games[0].steps, [QUESTION_STEP]))
+  const [answer, setAnswer] = useState('');
 
   const answer1 = 'night before christmas'
   const checkAnswer = () => {
     var userAnswer = document.querySelector(".final-answer").value;
-    var answerCorrect = userAnswer.toLowerCase() === answer1;
+    var answerCorrect = userAnswer.toLowerCase() === answer.toLowerCase();
     var correct = document.querySelector(".correct");
     var incorrect = document.querySelector(".incorrect")
 
@@ -53,7 +64,9 @@ function App() {
      const checkButton = document.querySelector('.check');
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 8000)
-      setTimeout(function(){correct.classList.add('hide'); checkButton.classList.add('hide'); correct.classList.remove('hide') }, 3000)
+      setTimeout(function(){correct.classList.add('hide'); userAnswer = ''}, 3000)
+      //checkButton.classList.add('hide');correct.classList.remove('hide') 
+      setGameIndex(gameIndex + 1);
     } else {
       incorrect.classList.remove('hide');
       const elementToShake = document.querySelector('.final-answer');
@@ -63,67 +76,56 @@ function App() {
         incorrect.classList.add('hide');
       }, 1000)
  }}
-  const YOTO_FACE_STEP = {
-    word: 'Yoto face',
-    pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU"
-  }
 
-  const QUESTION_STEP = {
-    word: 'Question Mark',
-    pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/UAQO5kbImNTPRcr2yywpPlR_MmzZtVsmhRUg6t5a_9s"
-  }
 
-  const [index, setIndex] = useState(0);
-  const [game, setGame] = useState(games[0])
-  const [steps, setSteps] = useState([YOTO_FACE_STEP].concat(games[0].steps, [QUESTION_STEP]))
 
-  useEffect = (() => {
-console.log('!!!!')
-    setGame(games[index]);
-    prev();
 
-    document.getElementById('heading').innerText = game.gameName;
+  useEffect(() =>{
 
-  }, [])
+    fetchGames().then(json => {
+    console.log(json);
+    games = json.allGames;
+    setGame(games[gameIndex]);
+    setSteps([YOTO_FACE_STEP].concat(games[gameIndex].steps, [QUESTION_STEP]));
+    setAnswer(games[gameIndex].productName)
+   })
+   
+    
+  }, [gameIndex])
 
 
   const  prev = (e) =>{
-    const i = Math.max(index - 1, 0);
     if(index === 0){
       setIndex(0)
     } else {
       setIndex(index - 1)
-    }
-
-    console.log(i);
-    document.querySelector(".pixelart").src = steps[i].pixelArtSrc;
+    }  
   }
 
-  const next = (e) => {
-    const i = Math.min(index + 1, steps.length - 1);
-    console.log(i);
-    if(index > steps.length || index === steps.length ){
-      setIndex(steps.length)
+  const next = (e) => {    
+    if(index > steps.length - 1 || index === steps.length - 1  ){
+      setIndex(steps.length - 1)
     } else {
       setIndex(index + 1)
     }
-    document.querySelector(".pixelart").src = steps[i].pixelArtSrc;
   }
+
+  
   return (
     <div className="App">
 
   <div class="canvas">
       <div class="fireworks"></div>
 
-      <h1 id="heading">Game 1</h1>
+      <h1 id="heading">Game {gameIndex + 1}</h1>
 
       <div class="game-container">
           <div class="image-container">
           <img class="player-image" src="https://www.datocms-assets.com/48136/1675793470-yoto-rebus-player.png"/>
           </div>
-          <img class="pixelart" src="https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU"/>
+          <img class="pixelart" src={steps[index].pixelArtSrc}/>
           <button class="left-btn" onClick={prev}></button>
-          <button class="right-btn" onClick={next}></button>
+          <button class="right-btn" onClick={next}></button> 
       </div>
 
 
@@ -147,7 +149,7 @@ console.log('!!!!')
           <p class="incorrect hide">WRONG!</p>
             <label>Answer:<input type="text"  name="answer" class="final-answer" required="true"/></label>
               <p>
-              <button class="submit" type="submit">Send</button>
+              {/* <button class="submit" type="submit">Send</button> */}
               </p>
               <button type="button" class="check" onClick={checkAnswer}>Check Answer</button>
           </form>
