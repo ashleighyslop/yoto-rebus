@@ -129,7 +129,7 @@ console.log('!!!!')
 
       <div class="form">
 
-          <form name="rebus-answers" data-netlify="true" data-netlify-honeypot="bot-field" method="post">
+          <form name="rebus-answers" method="post">
           <input type="hidden" name="form-name" value="rebus-answers" />
 
           <p>
