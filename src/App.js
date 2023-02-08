@@ -63,10 +63,11 @@ function App() {
      const submitButton = document.querySelector('.submit');
      const checkButton = document.querySelector('.check');
       fireworks.start()
-      setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 8000)
-      setTimeout(function(){correct.classList.add('hide'); userAnswer = ''}, 3000)
+      setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 3000)
+      setTimeout(function(){correct.classList.add('hide');  document.querySelector(".final-answer").value = ' '}, 3000)
       //checkButton.classList.add('hide');correct.classList.remove('hide')
       setGameIndex(gameIndex + 1);
+      setIndex(0);
     } else {
       incorrect.classList.remove('hide');
       const elementToShake = document.querySelector('.final-answer');
