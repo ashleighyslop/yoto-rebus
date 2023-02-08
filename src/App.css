@@ -1,0 +1,150 @@
+.h2{
+  margin-bottom: 0;
+}
+
+.canvas {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  
+}
+.game-container{
+    position: relative;
+}
+
+.player-image {
+  width: 100%;  
+}
+
+.pixelart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  width: 40%;
+  height: 40%;
+
+  
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  
+}
+.fireworks{
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.displayfireworks{
+    /* background-color: black; */
+    z-index: 2;
+}
+
+.left-btn,
+.right-btn {
+  cursor: pointer;
+  opacity: 0;
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 40px;
+  height: 40px;
+ 
+}
+.right-btn {
+  left: 70%;
+}
+
+.answer-area{
+    margin-top: 40px;
+
+}
+.answer-boxes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 8px;
+ 
+}
+
+.input-box.input-box{
+  width: 50%;
+}
+
+
+
+.hide{
+    display: none;
+}
+
+.form{
+    margin-top: 40px;
+}
+
+@media (min-width: 1024px){
+  .left-btn,
+  .right-btn{
+    width: 200px;
+    height: 200px;
+  }
+  .canvas{
+    width: 60vw;
+  }
+  .player-image {
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+  }
+  .pixelart{
+    width: 20%;
+    height: 40%;
+  }
+  .left-btn,
+  .right-btn {
+    cursor: pointer;
+    opacity: 0;
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 150px;
+    height: 150px;
+  
+  }
+  .right-btn {
+    left: 58%;
+  }
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(3em);
+  }
+  40% {
+    transform: translate(-3em);
+  }
+  60% {
+    transform: translate(3em);
+  }
+  80% {
+    transform: translate(-3em);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.final-answer.shake {
+  animation: shake 0.5s infinite;
+}
