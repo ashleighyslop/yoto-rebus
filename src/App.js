@@ -62,13 +62,14 @@ function App() {
      const fireworks = new Fireworks(container);
      const submitButton = document.querySelector('.submit');
      const checkButton = document.querySelector('.check');
+     console.log('-')
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 3000)
-      setTimeout(function(){correct.classList.add('hide');  document.querySelector(".final-answer").value = ' '}, 3000)
-      //checkButton.classList.add('hide');correct.classList.remove('hide')
-      setGameIndex(gameIndex + 1);
-      setIndex(0);
+      setTimeout(function(){correct.classList.add('hide');   checkButton.classList.add('hide'); submitButton.classList.remove('hide')}, 3000)
+      
+
     } else {
+      
       incorrect.classList.remove('hide');
       const elementToShake = document.querySelector('.final-answer');
       elementToShake.classList.add("shake")
@@ -77,6 +78,16 @@ function App() {
         incorrect.classList.add('hide');
       }, 1000)
  }}
+
+ const userSubmit = () => {
+  setGameIndex(gameIndex + 1);
+  setIndex(0);
+  document.querySelector(".final-answer").value = ' ';
+  const submitButton = document.querySelector('.submit');
+  const checkButton = document.querySelector('.check');
+  submitButton.classList.add('hide');
+  checkButton.classList.remove('hide');
+ }
 
 
 
@@ -113,46 +124,47 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div classNameName="App">
 
-  <div class="canvas">
-      <div class="fireworks"></div>
+  <div className="canvas">
+      <div className="fireworks"></div>
 
       <h1 id="heading">Game {gameIndex + 1}</h1>
 
-      <div class="game-container">
-          <div class="image-container">
-          <img class="player-image" src="https://www.datocms-assets.com/48136/1675793470-yoto-rebus-player.png"/>
+      <div className="game-container">
+          <div className="image-container">
+          <img className="player-image" src="https://www.datocms-assets.com/48136/1675793470-yoto-rebus-player.png"/>
           </div>
-          <img class="pixelart" src={steps[index].pixelArtSrc}/>
-          <button class="left-btn" onClick={prev}></button>
-          <button class="right-btn" onClick={next}></button>
+          <img className="pixelart" src={steps[index].pixelArtSrc}/>
+          <button className="left-btn" onClick={prev}></button>
+          <button className="right-btn" onClick={next}></button>
       </div>
 
 
-      <div class="form">
+      <div className="form">
 
         <form name="rebus-answers" method="post">
           <input type="hidden" name="form-name" value="rebus-answers" />
 
-          <p>
-              <label>Name: <input type="text" name="name" required="true" /></label>
-            </p>
-          <div class="answer-area">
-            <h2 class='h2'>Scratch Pad</h2>
-            <div class='answer-boxes'>
+       
+          <div className="answer-area">
+            <h2 className='h2'>Scratch Pad</h2>
+            <div className='answer-boxes'>
             {steps.slice(2).map(i =>
-              (<input class='input-box' type="text"/>)
+              (<input className='input-box' type="text"/>)
             )}
             </div>
           </div>
-          <p class="correct hide">Yaaaaaaay</p>
-          <p class="incorrect hide">WRONG!</p>
-            <label>Answer:<input type="text" name="answer" class="final-answer" required="true"/></label>
-            <p>
-            <button class="submit" type="submit">Send</button>
+          <p className="correct hide">Yaaaaaaay</p>
+          <p className="incorrect hide">WRONG!</p>
+          <p>
+              <label>Name: <input type="text" name="name" required="true" /></label>
             </p>
-            <button type="button" class="check" onClick={checkAnswer}>Check Answer</button>
+            <label>Answer:<input type="text" name="answer" className="final-answer" required="true"/></label>
+            <p>
+            <button className="submit hide" type="submit" onClick={userSubmit} >Send</button>
+            </p>
+            <button type="button" className="check" onClick={checkAnswer}>Check Answer</button>
         </form>
       </div>
   </div>
