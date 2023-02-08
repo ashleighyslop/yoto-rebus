@@ -1,7 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Fireworks } from 'fireworks-js';
-import Shake from 'shake.js';
 
 function App() {
   const games = [
@@ -46,7 +45,7 @@ function App() {
      const checkButton = document.querySelector('.check');
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 8000)
-      setTimeout(function(){correct.classList.add('hide'); submitButton.classList.remove('hide'); checkButton.classList.add('hide'); correct.classList.remove('hide') }, 3000)
+      setTimeout(function(){correct.classList.add('hide'); checkButton.classList.add('hide'); correct.classList.remove('hide') }, 3000)
     } else {
       incorrect.classList.remove('hide');
       const elementToShake = document.querySelector('.final-answer');
@@ -154,7 +153,7 @@ function App() {
           <p class="incorrect hide">WRONG!</p>
             <label>Answer:<input type="text"  name="answer" class="final-answer" required="true"/></label>
               <p>
-              <button class="hide submit" type="submit">Send</button>
+              <button class="submit" type="submit">Send</button>
               </p>
               <button type="button" class="check" onClick={checkAnswer}>Check Answer</button>
           </form>
