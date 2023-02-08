@@ -18,8 +18,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -25%);
-    width: 300px;
-    height: 300px;
+    width: 40%;
+    height: 40%;
   
     
     image-rendering: pixelated;
@@ -29,6 +29,20 @@
     
     
   }
+  .fireworks{
+      position: absolute;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+  }
+  .displayfireworks{
+      /* background-color: black; */
+      z-index: 2;
+  }
   
   .left-btn,
   .right-btn {
@@ -36,15 +50,24 @@
     opacity: 0;
     display: block;
     position: absolute;
-    top: 150px;
-    left: 100px;
+    top: 20%;
+    left: 15%;
     width: 150px;
     height: 150px;
+   
   }
+  @media (min-width: 1024px){
+      .left-btn,
+      .right-btn{
+        width: 200px;
+        height: 200px;
+      }
+ 
+}
   
   .right-btn {
-    top: 150px;
-    left: 550px;
+    top: 20%;
+    left: 70%;
   }
 
   .answer-area{
