@@ -3,18 +3,18 @@
 }
 
 .canvas {
-  width: 80vw;
+  width: 60vw;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  
+
 }
 .game-container{
     position: relative;
 }
 
 .player-image {
-  width: 100%;  
+  width: 100%;
 }
 
 .pixelart {
@@ -25,11 +25,11 @@
   width: 40%;
   height: 40%;
 
-  
+
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  
+
 }
 .fireworks{
     position: absolute;
@@ -56,7 +56,7 @@
   left: 15%;
   width: 40px;
   height: 40px;
- 
+
 }
 .right-btn {
   left: 70%;
@@ -71,7 +71,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 8px;
- 
+
 }
 
 .input-box.input-box{
@@ -116,7 +116,7 @@
     left: 30%;
     width: 150px;
     height: 150px;
-  
+
   }
   .right-btn {
     left: 58%;

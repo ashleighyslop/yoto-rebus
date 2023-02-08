@@ -48,7 +48,8 @@ function App() {
   const [answer, setAnswer] = useState('');
 
   const answer1 = 'night before christmas'
-  const checkAnswer = () => {
+  const checkAnswer = (e) => {
+    e.preventDefault();
     var userAnswer = document.querySelector(".final-answer").value;
     var answerCorrect = userAnswer.toLowerCase() === answer.toLowerCase();
     var correct = document.querySelector(".correct");
@@ -66,10 +67,10 @@ function App() {
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 3000)
       setTimeout(function(){correct.classList.add('hide');   checkButton.classList.add('hide'); submitButton.classList.remove('hide')}, 3000)
-      
+
 
     } else {
-      
+
       incorrect.classList.remove('hide');
       const elementToShake = document.querySelector('.final-answer');
       elementToShake.classList.add("shake")
@@ -143,10 +144,10 @@ function App() {
 
       <div className="form">
 
-        <form name="rebus-answers" method="post">
+        <form name="rebus-answers" method="post" onSubmit={userSubmit}>
           <input type="hidden" name="form-name" value="rebus-answers" />
 
-       
+
           <div className="answer-area">
             <h2 className='h2'>Scratch Pad</h2>
             <div className='answer-boxes'>
@@ -157,14 +158,15 @@ function App() {
           </div>
           <p className="correct hide">Yaaaaaaay</p>
           <p className="incorrect hide">WRONG!</p>
-          <p>
-              <label>Name: <input type="text" name="name" required="true" /></label>
-            </p>
-            <label>Answer:<input type="text" name="answer" className="final-answer" required="true"/></label>
+
+            <label>Your answer:<input type="text" name="answer" className="final-answer" required="true"/></label>
             <p>
-            <button className="submit hide" type="submit" onClick={userSubmit} >Send</button>
+              <label>Your name: <input type="text" name="name" required="true" /></label>
             </p>
-            <button type="button" className="check" onClick={checkAnswer}>Check Answer</button>
+            <p>
+            <button className="submit hide" type="submit" >Send</button>
+            </p>
+            <button type="submit" className="check" onClick={checkAnswer}>Check Answer</button>
         </form>
       </div>
   </div>
