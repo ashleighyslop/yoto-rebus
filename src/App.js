@@ -129,7 +129,7 @@ console.log('!!!!')
 
       <div class="form">
 
-          <form name="rebus-answers" method="post">
+          <form name="rebus-answers">
           <input type="hidden" name="form-name" value="rebus-answers" />
 
           <p>
