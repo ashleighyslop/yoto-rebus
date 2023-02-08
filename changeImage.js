@@ -1,6 +1,7 @@
 var i = 0;
 var game;
 var steps;
+var games;
 
 var YOTO_FACE_STEP = {
   word: 'Night',
@@ -87,4 +88,10 @@ var games = [
 ];
 
 
-document.addEventListener('readystatechange', function(){ initGame(0) });
+document.addEventListener('readystatechange', function(){
+  fetchGames().then(json => {
+    console.log('allGames', json.allGames);
+    games = json.allGames;
+    initGame(0);
+  })
+});
