@@ -34,7 +34,7 @@ function App() {
     var answerCorrect = userAnswer.toLowerCase() === answer1;
     var correct = document.querySelector(".correct");
     var incorrect = document.querySelector(".incorrect")
-    
+
     correct.classList.add('hide');
     if(answerCorrect){
      correct.classList.remove('hide');
@@ -59,7 +59,7 @@ function App() {
     word: 'Yoto face',
     pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/0CYPYWVHYLURB3_wYr0tx0bUKYb4mgXTjn_8cx89ciU"
   }
-  
+
   const QUESTION_STEP = {
     word: 'Question Mark',
     pixelArtSrc: "https://yoto-card-api-prod-media.s3.eu-west-2.amazonaws.com/yoto/UAQO5kbImNTPRcr2yywpPlR_MmzZtVsmhRUg6t5a_9s"
@@ -68,15 +68,15 @@ function App() {
   const [index, setIndex] = useState(0);
   const [game, setGame] = useState(games[0])
   const [steps, setSteps] = useState([YOTO_FACE_STEP].concat(games[0].steps, [QUESTION_STEP]))
-  
+
   useEffect = (() => {
-    
+
     setGame(games[index]);
     prev();
-  
-    
+
+
     document.getElementById('heading').innerText = game.gameName;
-    
+
   }, [])
 
 
@@ -88,7 +88,7 @@ function App() {
     } else {
       setIndex(index - 1)
     }
-    
+
     console.log(i);
     document.querySelector(".pixelart").src = steps[i].pixelArtSrc;
   }
@@ -105,14 +105,6 @@ function App() {
   }
   return (
     <div className="App">
-    <head>
-      <title>Yoto Iconic Game</title>
-      <script src="./changeImage.js"></script>
-      <link rel="stylesheet" href="player.css"/>
-      <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"/>
-      <script src="https://unpkg.com/fireworks-js@2.x/dist/index.umd.js"></script>
-    </head>
-    <body>
 
   <div class="canvas">
       <div class="fireworks"></div>
@@ -128,23 +120,25 @@ function App() {
           <button class="right-btn" onClick={next}></button>
       </div>
 
-      
-    
 
-      
 
- 
+
+
+
+
 
       <div class="form">
-       
-          <form name="rebus answers" netlify>
+
+          <form name="rebus-answers" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="rebus-answers" />
+
           <p>
               <label>Name: <input type="text" name="name" required="true" /></label>
             </p>
           <div class="answer-area">
           <h2 class='h2'>Scratch Pad</h2>
             <div class='answer-boxes'>
-            {steps.slice(2).map(i => 
+            {steps.slice(2).map(i =>
               (<input class='input-box' type="text"/>)
             )}
             </div>
@@ -159,7 +153,7 @@ function App() {
           </form>
       </div>
   </div>
-  </body>
+
 </div>
   );
 }
