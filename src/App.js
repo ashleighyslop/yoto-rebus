@@ -65,7 +65,7 @@ function App() {
       fireworks.start()
       setTimeout(function(){ fireworks.stop(); container.classList.remove('displayfireworks'); }, 8000)
       setTimeout(function(){correct.classList.add('hide'); userAnswer = ''}, 3000)
-      //checkButton.classList.add('hide');correct.classList.remove('hide') 
+      //checkButton.classList.add('hide');correct.classList.remove('hide')
       setGameIndex(gameIndex + 1);
     } else {
       incorrect.classList.remove('hide');
@@ -89,8 +89,8 @@ function App() {
     setSteps([YOTO_FACE_STEP].concat(games[gameIndex].steps, [QUESTION_STEP]));
     setAnswer(games[gameIndex].productName)
    })
-   
-    
+
+
   }, [gameIndex])
 
 
@@ -99,10 +99,10 @@ function App() {
       setIndex(0)
     } else {
       setIndex(index - 1)
-    }  
+    }
   }
 
-  const next = (e) => {    
+  const next = (e) => {
     if(index > steps.length - 1 || index === steps.length - 1  ){
       setIndex(steps.length - 1)
     } else {
@@ -110,7 +110,7 @@ function App() {
     }
   }
 
-  
+
   return (
     <div className="App">
 
@@ -125,13 +125,13 @@ function App() {
           </div>
           <img class="pixelart" src={steps[index].pixelArtSrc}/>
           <button class="left-btn" onClick={prev}></button>
-          <button class="right-btn" onClick={next}></button> 
+          <button class="right-btn" onClick={next}></button>
       </div>
 
 
       <div class="form">
 
-          <form name="rebus-answers">
+        <form name="rebus-answers" method="post">
           <input type="hidden" name="form-name" value="rebus-answers" />
 
           <p>
@@ -147,12 +147,12 @@ function App() {
           </div>
           <p class="correct hide">Yaaaaaaay</p>
           <p class="incorrect hide">WRONG!</p>
-            <label>Answer:<input type="text"  name="answer" class="final-answer" required="true"/></label>
-              <p>
-              {/* <button class="submit" type="submit">Send</button> */}
-              </p>
-              <button type="button" class="check" onClick={checkAnswer}>Check Answer</button>
-          </form>
+            <label>Answer:<input type="text" name="answer" class="final-answer" required="true"/></label>
+            <p>
+            <button class="submit" type="submit">Send</button>
+            </p>
+            <button type="button" class="check" onClick={checkAnswer}>Check Answer</button>
+        </form>
       </div>
   </div>
 
